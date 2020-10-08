@@ -1,26 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
+using WebApiNetFramework.Models;
 
 namespace WebApiNetFramework.Controllers
 {
     public class ValuesController : ApiController
     {
         // GET api/values
+        [ActionName("Home")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
+
         // GET api/values/5
-        public string Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return "value";
+            HttpResponseMessage response = Request.CreateResponse(new Person { Name = "Alex" });
+            return response;
+            //return Ok(new Person { Name = "Karolina" });
         }
 
-        //public IHttpActionResult GetRandom()
-        //{
-        //    return Create();
-        //}
+        public Person Get(string name)
+        {
+            return new Person { Name = "Karolina" };
+        }
 
         // POST api/values
         public void Post([FromBody] string value)
@@ -35,6 +41,7 @@ namespace WebApiNetFramework.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
+
         }
     }
 }
