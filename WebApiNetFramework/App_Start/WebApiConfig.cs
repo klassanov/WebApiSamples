@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using WebApiNetFramework.MessageHandlers;
 
 namespace WebApiNetFramework
 {
@@ -16,6 +17,8 @@ namespace WebApiNetFramework
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.MessageHandlers.Add(new LoggingHandler());
 
             //config.Routes.MapHttpRoute(
             //    name: "NamedApi",
